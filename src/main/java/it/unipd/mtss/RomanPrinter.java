@@ -43,7 +43,7 @@ public class RomanPrinter {
             case 'V':
                 return new String[] { "\\   /", " \\ / ", "  V  " };
             case 'X':
-                return new String[] { "\\ / ", "  X ", "/ \\ " };
+                return new String[] { "\\ / ", "  X ", " / \\ " };
             case 'L':
                 return new String[] { "|   ", "|_  ", "|   " };
             case 'C':
