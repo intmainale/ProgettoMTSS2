@@ -6,110 +6,54 @@ package it.unipd.mtss;
 // ////////////////////////////////////////////////////////////////////
 
 public class RomanPrinter {
-    public static String print(int num){
-        if (num <= 0 || num > 1000) {
-            throw new IllegalArgumentException("Number must be between 1 and 1000");
-        }
-        return printAsciiArt(IntegerToRoman.convert(num));
+    public static String print(int num) {
+        String roman = IntegerToRoman.convert(num);
+        return printAsciiArt(roman);
     }
 
-    static String printAsciiArt(String romanNumber){
-        if (romanNumber == null) {
-            throw new IllegalArgumentException("Roman numeral cannot be null");
-        }
-
-        if (romanNumber.isEmpty()) {
-            return "";
+    private static String printAsciiArt(String romanNumber) {
+        if (romanNumber == null || romanNumber.isEmpty()) {
+            throw new IllegalArgumentException("Roman numeral cannot be null or empty");
         }
 
         StringBuilder result = new StringBuilder();
-        String[] asciiLines = new String[6];
+        String[] lines = new String[3]; // Each character is 3 lines tall
 
-        for (int i = 0; i < asciiLines.length; i++) {
-            asciiLines[i] = "";
+        // Initialize lines
+        for (int i = 0; i < 3; i++) {
+            lines[i] = "";
         }
 
         for (char c : romanNumber.toCharArray()) {
-            String[] characterArt = getAsciiArt(c);
-            for (int i = 0; i < asciiLines.length; i++) {
-                asciiLines[i] += characterArt[i];
+            String[] charArt = getAsciiArt(c);
+            for (int i = 0; i < 3; i++) {
+                lines[i] += charArt[i];
             }
         }
 
-        for (String line : asciiLines) {
-            result.append(line).append("\n");
-        }
-
+        // Join lines with newline separators
+        result.append(String.join("\n", lines));
         return result.toString();
     }
 
-    private static String[] getAsciiArt(char romanChar) {
-        switch (romanChar) {
+    private static String[] getAsciiArt(char c) {
+        switch (c) {
             case 'I':
-                return new String[] {
-                        " _____ ",
-                        "|_   _|",
-                        "  | |  ",
-                        "  | |  ",
-                        " _| |_ ",
-                        "|_____|"
-                };
+                return new String[] { "  _ ", " |_|", " |_|" }; // 3-line "I"
             case 'V':
-                return new String[] {
-                        "__      __",
-                        "\\ \\    / /",
-                        " \\ \\  / / ",
-                        "  \\ \\/ /  ",
-                        "   \\  /   ",
-                        "    \\/    "
-                };
+                return new String[] { "\\   /", " \\ / ", "  V  " };
             case 'X':
-                return new String[] {
-                        " __ __ ",
-                        "|  \\/  |",
-                        "| \\  / |",
-                        "| |\\/| |",
-                        "| |  | |",
-                        "|_|  |_|"
-                };
+                return new String[] { "\\ / ", "  X ", "/ \\ " };
             case 'L':
-                return new String[] {
-                        " _      ",
-                        "| |     ",
-                        "| |     ",
-                        "| |     ",
-                        "| |____ ",
-                        "|______|"
-                };
+                return new String[] { "|   ", "|_  ", "|   " };
             case 'C':
-                return new String[] {
-                        "  _____ ",
-                        " / ____|",
-                        "| |     ",
-                        "| |     ",
-                        "| |____ ",
-                        " \\_____|"
-                };
+                return new String[] { "  __ ", " /   ", "|__  " };
             case 'D':
-                return new String[] {
-                        " _____  ",
-                        "|  __ \\ ",
-                        "| |  | |",
-                        "| |  | |",
-                        "| |__| |",
-                        "|_____/ "
-                };
+                return new String[] { " __  ", "|  \\ ", "|__/ " };
             case 'M':
-                return new String[] {
-                        " __  __ ",
-                        "|  \\/  |",
-                        "| \\  / |",
-                        "| |\\/| |",
-                        "| |  | |",
-                        "|_|  |_|"
-                };
+                return new String[] { "__  __", "|  \\/ |", "|_/\\__|" };
             default:
-                throw new IllegalArgumentException("Invalid Roman numeral character: " + romanChar);
+                throw new IllegalArgumentException("Invalid Roman numeral: " + c);
         }
     }
 }
