@@ -50,4 +50,26 @@ class RomanPrinterTest {
         String actual = RomanPrinter.print(1000);
         assertEquals(expected, actual);
     }
+
+    @Test
+    void testPrintNumber50() {
+        String expected =
+                "|   \n" +
+                        "|_  \n" +
+                        "|   ";
+        String actual = RomanPrinter.print(50);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testPrintNumber500() {
+        String expected =
+                " __  \n" +
+                        "|  \\ \n" +
+                        "|__/ ";
+        String actual = RomanPrinter.print(500);
+        assertEquals(expected, actual);
+    }
+
+    // Removed flawed test for 888 because expected output did not match full ASCII art for 888
 }

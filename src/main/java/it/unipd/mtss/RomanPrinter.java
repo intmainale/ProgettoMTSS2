@@ -27,7 +27,7 @@ public class RomanPrinter {
         for (char c : romanNumber.toCharArray()) {
             String[] charArt = getAsciiArt(c);
             for (int i = 0; i < 3; i++) {
-                lines[i] += charArt[i];
+                lines[i] += charArt[i]; // Directly concatenate each character's art without extra spaces
             }
         }
 

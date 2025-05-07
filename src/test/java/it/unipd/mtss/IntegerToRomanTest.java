@@ -31,6 +31,11 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void testConvert_50() {
+        assertEquals("L", IntegerToRoman.convert(50));
+    }
+
+    @Test
     public void testConvert_90() {
         assertEquals("XC", IntegerToRoman.convert(90));
     }
@@ -41,8 +46,23 @@ public class IntegerToRomanTest {
     }
 
     @Test
+    public void testConvert_500() {
+        assertEquals("D", IntegerToRoman.convert(500));
+    }
+
+    @Test
+    public void testConvert_888() {
+        assertEquals("DCCCLXXXVIII", IntegerToRoman.convert(888));
+    }
+
+    @Test
     public void testConvert_900() {
         assertEquals("CM", IntegerToRoman.convert(900));
+    }
+
+    @Test
+    public void testConvert_999() {
+        assertEquals("CMXCIX", IntegerToRoman.convert(999));
     }
 
     @Test
